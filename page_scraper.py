@@ -161,7 +161,7 @@ def scrape_page(driver, index: int):
 def scrape_url(driver, url: str, index: int):
     print(f"[{index}] Going to page and waiting 5 secs")
     driver.get(url)
-    time.sleep(10)
+    time.sleep(5)
     print(f"[{index}] Scraping page")
     scraped_data = scrape_page(driver, index)
     print(f"[{index}] Done")

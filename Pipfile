@@ -8,6 +8,8 @@ selenium = "*"
 joblib = "*"
 undetected-chromedriver = "*"
 bs4 = "*"
+pandas = "*"
+openpyxl = "*"
 
 [dev-packages]
 
