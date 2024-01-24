@@ -20,7 +20,8 @@ def main():
     cronometer.start()
 
     urls: list[str] = get_urls_from_file('urls.txt')
-    scraper = Scraper(elements=urls, scrape_function=scrape_url, machine_cores=2, is_headless=False)
+    print(f"Total urls: {len(urls)}")
+    scraper = Scraper(elements=urls, scrape_function=scrape_url, machine_cores=1, is_headless=False)
     scraper.scrape_all()
     
     cronometer.stop()

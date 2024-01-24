@@ -24,18 +24,20 @@ class Scraper:
     def _scrape(self, index: int, element):
         driver = self._get_driver()
         try:
+            print(f"[{index}] Scraping")
             scraped = self.scrape_function(driver, element, index)
             return scraped
         except Exception as e:
             print(f"[{index}] Error")
             print(e)
+            return None
         finally:
             print(f"[{index}] Quitting")
             driver.quit()
 
     def scrape_all(self):
         with Parallel(n_jobs=self.machine_cores) as parallel:
-            self.scraped_data = parallel(
-            delayed(self._scrape)(index, element)
-            for index, element in enumerate(self.elements)
-        )
+            results = parallel(
+                delayed(self._scrape)(index, element)
+                for index, element in enumerate(self.elements))
+            self.scraped_data = [result for result in results if result is not None]
